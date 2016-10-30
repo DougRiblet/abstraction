@@ -14,9 +14,9 @@ if(!process.env.MONGODB_URI){
 }
 
 if(!process.env.API_KEY){
-  var api_key = require( './key' ).key;
+  var key = require( './key' ).key;
 } else {
-  var api_key = process.env.API_KEY;
+  var key = process.env.API_KEY;
 }
 
 mongoose.connect(uri);
@@ -43,14 +43,13 @@ app.use(function(req, res, next) {
   res.status(404).send('Error 404');
 });
 
-
 // DATABASE
 
 var phraseSchema = mongoose.Schema({
-  search_term: String
+  search_term: String,
+  search_date: Date
 });
 var Phrase = mongoose.model('Phrase', phraseSchema);
-
 
 // Connection Events
 
