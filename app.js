@@ -43,6 +43,18 @@ app.get('/search/*', function(req, res) {
     }
   }
 
+  var submission = new Phrase({
+    search_term: submit,
+    search_date: new Date()
+  });
+  submission.save(function (err, data) {
+    if (err) {
+      console.log("link submission error: ", err);
+    } else {
+      console.log("db save: ", submit);
+    }
+  })
+
   var api1 = "https://www.googleapis.com/customsearch/v1?q=";
   var api2 = "&cx=008521943856454278517%3Anc2w6ux1uqq";
   var api3 = "&searchType=image&fields=items(formattedUrl%2Cimage(contextLink%2CthumbnailLink)%2Clink%2Csnippet)"
