@@ -1,12 +1,11 @@
-var express  = require("express");
-var path     = require("path");
+var express  = require('express');
+var path     = require('path');
 var http     = require('http');
-var mongoose = require( 'mongoose' );
+var request  = require('request');
+var mongoose = require('mongoose');
 
 var app      = express();
 var port     = process.env.PORT || 8010;
-
-var se_id = "008521943856454278517:nc2w6ux1uqq";
 
 if(!process.env.MONGODB_URI){
   var uri = require( './uri' ).uri;
@@ -44,7 +43,25 @@ app.get('/search/*', function(req, res) {
     }
   }
 
+  console.log("submit,offset: ", submit, offset);
 
+  var api1 = "https://www.googleapis.com/customsearch/v1?q=";
+  var api2 = "&cx=008521943856454278517%3Anc2w6ux1uqq";
+  var api3 = "&searchType=image&fields=items(formattedUrl%2Cimage(contextLink%2CthumbnailLink)%2Clink%2Csnippet)"
+  var url = api1 + submit + api2 + api3 + "&key=" + key;
+  if (offset){
+    url = url + "&start=" + offset;
+  } 
+
+  request(url, function (error, response, body) {
+    if (error) {
+      console.log("request error", error);
+      res.send("Error with request");
+    }
+    if (!error && response.statusCode == 200) {
+      res.json(body);
+    }
+  })
 });
 
 app.get('/recent', function(req, res) {
