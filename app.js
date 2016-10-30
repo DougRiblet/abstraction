@@ -36,9 +36,12 @@ app.use(function(req, res, next) {
 });
 
 
+// DATABASE
 
-
-
+var phraseSchema = mongoose.Schema({
+  search_term: String
+});
+var Phrase = mongoose.model('Phrase', phraseSchema);
 
 
 // Connection Events
@@ -60,6 +63,3 @@ mongoose.connection.on('disconnected', function(){
 app.listen(port, function () {
   console.log('Image Search app listening on port ' + port);
 });
-
-
-
