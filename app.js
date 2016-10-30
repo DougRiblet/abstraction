@@ -53,12 +53,20 @@ app.get('/search/*', function(req, res) {
 
   request(url, function (error, response, body) {
     if (error) {
-      console.log("request error", error);
+      console.log("request error: ", error);
       res.send("Error with request");
     }
     if (!error && response.statusCode == 200) {
-      // console.log("body: ", body);
-      res.json(JSON.parse(body).items);
+      var output = JSON.parse(body).items.map(function(item){
+        var newItem = {};
+        newItem.image = item.link;
+        newItem.thumbnail = item.image.thumbnailLink;
+        newItem.caption = item.snippet;
+        newItem.page = item.image.contextLink;
+        return newItem;
+      });
+
+      res.json(output);
     }
   })
 });
