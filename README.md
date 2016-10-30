@@ -1,4 +1,4 @@
-# Image Search API
+# Image Search Abstraction Layer
 
 Creator: Doug Riblet | https://github.com/smashzen
 
@@ -9,6 +9,7 @@ Deployed on Heroku:
 
 
 Github repository:  
+https://github.com/smashzen/abstraction
 
 The original FCC assignment read:
 
