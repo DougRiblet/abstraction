@@ -33,7 +33,7 @@ app.get('/favicon.ico', function(req, res) {
 
 app.get('/search/*', function(req, res) {
   var offset, submit = req.url.slice(8);
-  if(submit.indexOf("?")<0){
+  if(submit.indexOf("?")>=0){
     var cutoff = submit.indexOf("?");
     var addon = submit.slice(cutoff);
     submit = submit.slice(0,cutoff);
@@ -42,8 +42,6 @@ app.get('/search/*', function(req, res) {
       offset = 10*(parseInt(addon.replace("?offset=",""))-1)+1;
     }
   }
-
-  console.log("submit,offset: ", submit, offset);
 
   var api1 = "https://www.googleapis.com/customsearch/v1?q=";
   var api2 = "&cx=008521943856454278517%3Anc2w6ux1uqq";
@@ -59,7 +57,8 @@ app.get('/search/*', function(req, res) {
       res.send("Error with request");
     }
     if (!error && response.statusCode == 200) {
-      res.json(body);
+      // console.log("body: ", body);
+      res.json(JSON.parse(body).items);
     }
   })
 });
