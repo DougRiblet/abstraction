@@ -5,10 +5,18 @@ var mongoose = require( 'mongoose' );
 var app = express();
 var port = process.env.PORT || 8010;
 
+var se_id = "008521943856454278517:nc2w6ux1uqq";
+
 if(!process.env.MONGODB_URI){
   var uri = require( './uri' ).uri;
 } else {
   var uri = process.env.MONGODB_URI;
+}
+
+if(!process.env.API_KEY){
+  var api_key = require( './key' ).key;
+} else {
+  var api_key = process.env.API_KEY;
 }
 
 mongoose.connect(uri);
