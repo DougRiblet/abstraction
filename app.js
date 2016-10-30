@@ -84,6 +84,17 @@ app.get('/search/*', function(req, res) {
 });
 
 app.get('/recent', function(req, res) {
+  Phrase.find().sort('-search_date').limit(10).exec(function(err,data){
+    if (err){
+      console.log("recent error: ", err);
+      res.sendStatus(500);
+    } else {
+      var recentData = data.map(function(item){
+        return {'term': item.search_term, 'when':item.search_date};
+      });
+      res.json(recentData);
+    }
+  })
 
 });
 
