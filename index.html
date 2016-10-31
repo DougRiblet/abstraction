@@ -8,17 +8,22 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     line-height: 150%;
+    padding-bottom: 2em;
   }
   .container, .jumbotron .container {max-width: 700px; margin:10px auto;}
   .jumbotron {
     background-color: #838; color: white;
     padding-top: 16px; padding-bottom: 16px;
   }
-  h4 {margin-top: 1em;}
+  h4 {
+    margin-top: 1em;
+    text-decoration:underline;
+  }
   .example {
     font-family: "Lucida Console", Monaco, monospace;
+    font-size: 12px;
     background-color: #eee;
-    padding: 3px 8px;
+    padding: 2px 4px;
   }
   </style>
 </head>
@@ -31,8 +36,22 @@
 </div>
 
 <div class="container">
-</div>
+  <h4>How to Use This Service</h4>
+  <p>Send a search phrase as parameter to <span class="example">https://fathomless-reef-60319.herokuapp.com/search/</span>.
+  <p>This service will return ten results from Google Image Search in JSON format. Each result item includes image URL, thumbnail URL, webpage source URL and short text description.</p>
+  <p>By default, this service returns the first ten results. You may specify a different "page" of results by adding <span class="example">?offset=[number]</span> to your query. For example, <span class="example">/search/ducklings?offset=2</span> will give you results 11 through 20 for search term "ducklings".</p>
+  <p>Do not use question marks in your search term. This service interpets "?" as the end of your search term.</p>
 
+  <h4>Recent Searches</h4>
+  <p>You can get the ten most recent search terms, also in JSON format, at <span class="example">https://fathomless-reef-60319.herokuapp.com/recent/</span>. (<a href="https://fathomless-reef-60319.herokuapp.com/recent/">Link</a>)</p>
+
+  <h4>Example Searches</h4>
+  <p><a href="https://fathomless-reef-60319.herokuapp.com/search/Chicago%20Cubs">https://fathomless-reef-60319.herokuapp.com/search/Chicago Cubs</a></p>
+  <p><a href="https://fathomless-reef-60319.herokuapp.com/search/Incredible%20Hulk">https://fathomless-reef-60319.herokuapp.com/search/Incredible Hulk</a></p>
+  <p><a href="https://fathomless-reef-60319.herokuapp.com/search/orange%20tabby?offset=3">https://fathomless-reef-60319.herokuapp.com/search/orange tabby?offset=3</a></p>
+  <p><a href="https://fathomless-reef-60319.herokuapp.com/search/Funkadelic?offset=2">https://fathomless-reef-60319.herokuapp.com/search/Funkadelic?offset=2</a></p>
+
+</div>
 
 </body>
 </html>
